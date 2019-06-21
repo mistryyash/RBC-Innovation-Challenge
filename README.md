@@ -11,7 +11,7 @@ Initial set up to test locally:
 - Slack
   - Sign into the workspace
   - Access this link: https://api.slack.com/apps -> select RBC Innovation Test One -> Add features and functionality -> event subscription -> update the URL to the new URL provided by ngrok
-  
+   
 This process is obviously not ideal and I think we should get the code fully onto a server as soon as we can
 
 Server version:
