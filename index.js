@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const authRouter = require('./Routes/auth');
 const messageRouter = require('./Routes/messagesEvent');
 
-require('./db/db_commands');
+require('./Runners/findBestConnection');
 
 const app = express();
 const port = process.env.PORT || 5000;
