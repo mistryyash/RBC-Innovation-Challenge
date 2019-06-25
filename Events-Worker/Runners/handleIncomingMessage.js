@@ -8,6 +8,9 @@ const handleIncomingMessage = async (channelID) => {
     channelMembers = await cache.getValueFromCache(channelID);
   } catch (e) {
     channelMembers = await getChannelMembers(channelID);
+    if (!channelMembers) {
+      throw new Error('Could not find channel members');
+    }
     cache.addToCache(channelID, channelMembers);
   }
 

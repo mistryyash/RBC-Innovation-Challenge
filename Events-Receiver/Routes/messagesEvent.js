@@ -8,10 +8,9 @@ router.post('/', async (req, res) => {
 
   // this is for when a message is received, should be cleaned up to a function or something
   if (req.body && req.body.event && req.body.event.channel) {
+    console.log(`${req.body.event.channel} sent to rabbit!`);
     sendToRabbit(req.body.event.channel);
   }
 });
-
-sendToRabbit('Test');
 
 module.exports = router;

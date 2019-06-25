@@ -3,9 +3,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const authRouter = require('./Routes/auth');
 
-require('./CouchBaseCache/setUp');
-require('./RabbitConsumer/RabbitConsumer');
-
 const app = express();
 const port = process.env.PORT || 5000;
 

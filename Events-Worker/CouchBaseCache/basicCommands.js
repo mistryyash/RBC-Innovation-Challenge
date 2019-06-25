@@ -17,7 +17,6 @@ const addToCache = (channelID, members) => new Promise((resolve, reject) => {
 const getValueFromCache = channelID => new Promise((resolve, reject) => {
   getBucket().getAndTouch(channelID, secondsInADay, (err, result) => {
     if (err) {
-      console.log(err);
       reject(err);
     } else {
       resolve(result.value);
