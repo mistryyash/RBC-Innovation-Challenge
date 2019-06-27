@@ -1,19 +1,24 @@
-const { parseSlackId } = require('../util/util');
-
 const express = require('express');
+const { parseSlackId, slashResponseText } = require('../util/util');
+const { findBestConnectionID } = require('../Runners/findBestConnection');
 
 const router = new express.Router();
 
-router.post('/', (req, res) => {
-  const userID = req.body.user_id;
-  const personToMeetRaw = req.body.text;
-  const personToMeetId = parseSlackId(personToMeetRaw);
-  /*
-   * 1) Make a call to method which will access the DB
-            -> hint it is an async function!
-   * 2) Then return the result
-   * 3) Bouns - look into error handling
-   */
+router.post('/', async (req, res) => {
+  const userId = req.body.user_id;
+  const personToMeetId = parseSlackId(req.body.text);
+  try {
+    const connectionId = await findBestConnectionID(userId, personToMeetId);
+    let responseText;
+    if (connectionId) {
+      responseText = slashResponseText(personToMeetId, connectionId);
+    } else {
+      responseText = `Sorry you do not have any common connections with <@${personToMeetId}>`;
+    }
+    res.status(200).send(responseText);
+  } catch (e) {
+    res.status(500).send('Sorry, it seems the app has a server error, please try again later');
+  }
 });
 
 module.exports = router;

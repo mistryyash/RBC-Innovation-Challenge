@@ -1,4 +1,4 @@
-const { findConnectionTraversal } = require('../db/db_commands');
+const { findConnectionTraversal } = require('../Neo4j_DB/db_commands');
 
 const findBestConnectionID = async (idOne, idTwo) => {
   const pathsArr = await findConnectionTraversal(idOne, idTwo);
@@ -12,7 +12,10 @@ const findBestConnectionID = async (idOne, idTwo) => {
       };
     }
   });
-  return bestMatch.id;
+  if (bestMatch) {
+    return bestMatch.id;
+  }
+  return undefined;
 };
 
 module.exports = { findBestConnectionID };

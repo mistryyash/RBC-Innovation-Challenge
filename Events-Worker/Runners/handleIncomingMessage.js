@@ -1,5 +1,5 @@
 const { getChannelMembers } = require('../SlackInfoRequests/basicInfoRequests');
-const { addMessageCount } = require('../db/db_commands');
+const { addMessageCount } = require('../Neo4j_DB/db_commands');
 const cache = require('../CouchBaseCache/basicCommands');
 
 const handleIncomingMessage = async (channelID) => {

@@ -5,9 +5,9 @@ const router = new express.Router();
 
 router.get('/', async (req, res) => {
   try {
-  await getOAuth2Token(req.query.code);
-  res.send('App Succesfully Installed :)');
-  } catch(e){
+    await getOAuth2Token(req.query.code);
+    res.send('App Succesfully Installed :)');
+  } catch (e) {
     res.send('Error installing app :(');
   }
 });
