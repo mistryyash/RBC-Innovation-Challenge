@@ -2,7 +2,53 @@
 
 ![Project Architecture](Overview_Assets/RBC_Innovation_Challenge_Architecture.PNG)
 
-How to run the code
+Table of Contents:
+1) Overview of each component
+2) Start up instructions
+
+#### Component Overview ###
+Slack Events API
+- This sends auth requests and it sends the message data
+- It expects back a token in response to its auth challenge
+- The messages just need a 200 response
+
+Events Receiver Node Server
+- Responds to the auth challenges from the event API
+- Receives the messages events from slack
+- Pass along only the channel ID of the message into the rabbit
+
+RabbitMQ
+- Used to control flow of messages to the worker server
+- Important due to the speratic flow of messages, stops the worker server from being flooded
+
+Events Worker Node Cluster
+- This server is responsible for recieving the messages datas from the rabbit and processing slash commands
+- To process messages:
+    - Figure out who is the in the channel
+        - First check the cache
+        - If information is not in cache make information request to slack methods API
+        - Add to cache if it wasn't there
+    - Get the current interaction data between the users
+    - Update the count/create any users not currently in the database
+- To porcess slash requests
+    - Get the ID of the person who is trying to be found and the user
+    - Run traversal on database
+    - Find best connection
+    - Return best connection
+    
+Couchbase Cache
+- Cache channel members to avoid repeated network requests
+
+Slack Methods API
+- Make basic get requests to get information about users
+
+Neo4J Database
+- This is a graph database to store the interaction data
+- Graphdata base fits the data well and leads to very fast queries
+
+
+
+### How to run the code ###
 - To run all of the services is complicated, here is a brief overview we can go into more detail in person
 1) Download rabbitMQ and make sure it is running as a service on your machine
 2) Download couchbase and configure it:
