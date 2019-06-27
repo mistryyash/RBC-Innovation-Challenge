@@ -1,5 +1,7 @@
 # RBC-Innovation-Challenge
 
+![Porject Architecture]("./Overview_Assets/RBC_Innovation_Challenge_Architecture.PNG")
+
 How to run the code
 - To run all of the services is complicated, here is a brief overview we can go into more detail in person
 1) Download rabbitMQ and make sure it is running as a service on your machine
