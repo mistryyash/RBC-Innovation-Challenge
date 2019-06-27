@@ -1,6 +1,6 @@
 # RBC-Innovation-Challenge
 
-![Porject Architecture]("./Overview_Assets/RBC_Innovation_Challenge_Architecture.PNG")
+![Project Architecture](Overview_Assets/RBC_Innovation_Challenge_Architecture.PNG)
 
 How to run the code
 - To run all of the services is complicated, here is a brief overview we can go into more detail in person
