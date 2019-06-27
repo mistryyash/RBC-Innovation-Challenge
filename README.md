@@ -18,11 +18,11 @@ Events Receiver Node Server
 - Pass along only the channel ID of the message into the rabbit
 
 RabbitMQ
-- Used to control flow of messages to the worker server
-- Important due to the speratic flow of messages, stops the worker server from being flooded
+- Used to control the flow of messages to the worker server
+- Important due to the sporadic flow of messages, stops the worker server from being flooded
 
 Events Worker Node Cluster
-- This server is responsible for recieving the messages datas from the rabbit and processing slash commands
+- This server is responsible for receiving the messages data from the rabbit and processing slash commands
 - To process messages:
     - Figure out who is the in the channel
         - First check the cache
@@ -30,7 +30,7 @@ Events Worker Node Cluster
         - Add to cache if it wasn't there
     - Get the current interaction data between the users
     - Update the count/create any users not currently in the database
-- To porcess slash requests
+- To process slash requests
     - Get the ID of the person who is trying to be found and the user
     - Run traversal on database
     - Find best connection
